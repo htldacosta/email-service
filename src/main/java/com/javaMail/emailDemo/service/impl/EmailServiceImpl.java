@@ -3,6 +3,8 @@ package com.javaMail.emailDemo.service.impl;
 import com.javaMail.emailDemo.entity.Mail;
 import com.javaMail.emailDemo.service.EmailService;
 import jakarta.mail.internet.MimeMessage;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Safelist;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -24,6 +26,10 @@ public class EmailServiceImpl implements EmailService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
+            String sanitizedName = Jsoup.clean(mail.getName(), Safelist.none());
+            String sanitizedSubject = Jsoup.clean(mail.getSubject(), Safelist.none());
+            String sanitizedMessage = Jsoup.clean(mail.getMessage(), Safelist.none());
+
             helper.setTo("hitaludcosta@mail.com");
 
             helper.setSubject(mail.getSubject());
@@ -32,12 +38,12 @@ public class EmailServiceImpl implements EmailService {
 
             String htmlBody = "<html<body>"
                             + "<h1>Nova Mensagem de Contato</hh1>"
-                            + "<p><b>Nome:</b> " + mail.getName() + "</p>"
+                            + "<p><b>Nome:</b> " + sanitizedName + "</p>"
                             + "<p><b>E-mail:</b> " + mail.getEmail() + "</p>"
-                            + "<p><b>Assunto:</b> " + mail.getSubject() + "</p>"
+                            + "<p><b>Assunto:</b> " + sanitizedSubject + "</p>"
                             + "--------------"
                             + "<p><b>Mensagem:</b></p>"
-                            + "<p>" + mail.getMessage() + "<p>"
+                            + "<p>" + sanitizedMessage + "<p>"
                             + "</body></html>";
 
             helper.setText(htmlBody, true);

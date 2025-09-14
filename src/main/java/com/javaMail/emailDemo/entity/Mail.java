@@ -1,10 +1,17 @@
 package com.javaMail.emailDemo.entity;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class Mail {
 
+    @NotBlank(message = "O nome é obrigatório")
     private String name;
 
+    @NotBlank(message = "O email é obrigatório")
+    @Email(message = "Email é obrigatório")
     private String email;
+
 
     private String subject;
 
