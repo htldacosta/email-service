@@ -2,16 +2,28 @@ package com.javaMail.emailDemo.entity;
 
 public class Mail {
 
-    private String[] to;
-    private String subject;
-    private String body;
+    private String name;
 
-    public String[] getTo() {
-        return to;
+    private String email;
+
+    private String subject;
+
+    private String message;
+
+    public String getName() {
+        return name;
     }
 
-    public void setTo(String[] to) {
-        this.to = to;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSubject() {
@@ -22,11 +34,11 @@ public class Mail {
         this.subject = subject;
     }
 
-    public String getBody() {
-        return body;
+    public String getMessage() {
+        return message;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
