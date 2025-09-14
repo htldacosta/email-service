@@ -2,15 +2,15 @@ package com.javaMail.emailDemo.entity;
 
 public class Mail {
 
-    private String to;
+    private String[] to;
     private String subject;
     private String body;
 
-    public String getTo() {
+    public String[] getTo() {
         return to;
     }
 
-    public void setTo(String to) {
+    public void setTo(String[] to) {
         this.to = to;
     }
 

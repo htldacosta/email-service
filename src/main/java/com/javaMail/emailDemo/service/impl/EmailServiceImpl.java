@@ -2,8 +2,10 @@ package com.javaMail.emailDemo.service.impl;
 
 import com.javaMail.emailDemo.entity.Mail;
 import com.javaMail.emailDemo.service.EmailService;
-import org.springframework.mail.SimpleMailMessage;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMailMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +19,21 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Async
-    @Override
     public void sendSimpleEmail(Mail mail) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(mail.getTo());
-        message.setSubject(mail.getSubject());
-        message.setText(mail.getBody());
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
 
-        mailSender.send(message);
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+            helper.setTo(mail.getTo());
+            helper.setSubject(mail.getSubject());
+
+            helper.setText(mail.getBody(), true);
+
+            mailSender.send(message);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
