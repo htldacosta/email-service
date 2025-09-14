@@ -1,0 +1,46 @@
+### Exclusão de arquivos sensíveis ###
+# Ignore o arquivo de configuração do Spring com informações sensíveis.
+src/main/resources/application.properties
+
+### Exclusões de arquivos gerados por Ferramentas e IDEs ###
+# Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# Exceção para permitir o versionamento do "target" dentro de sub-projetos
+# caso você tenha uma estrutura multi-módulos. No seu caso, você pode
+# remover as linhas abaixo se não for usar.
+#!**/src/main/**/target/
+#!**/src/test/**/target/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# STS (Spring Tool Suite)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+# Exceção para permitir o versionamento do "build" em sub-projetos.
+#!**/src/main/**/build/
+#!**/src/test/**/build/
+
+# VS Code
+.vscode/
+
+# Exclusão de arquivos do sistema operacional
+.DS_Store
