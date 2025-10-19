@@ -1,6 +1,7 @@
 package com.email.email_service.controller;
 
 import com.email.email_service.DTO.EmailRequestDTO;
+import com.email.email_service.service.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,14 +21,9 @@ public class EmailController {
     @PostMapping("/simple")
     public ResponseEntity<String> sendSimpleEmail(@Valid @RequestBody EmailRequestDTO emailRequest) {
 
-        // ---- ATENÇÃO ----
-        // Esta linha abaixo VAI DAR UM ERRO DE COMPILAÇÃO agora.
-        // Isso é esperado!
-        // Nosso próximo passo será exatamente corrigir isso, atualizando a
-        // interface 'EmailService' para que ela também aceite 'EmailRequestDTO'.
         emailService.sendSimpleEmail(emailRequest);
 
-        // Retorna uma resposta HTTP 200 OK com uma mensagem clara.
+
         return ResponseEntity.ok("Solicitação de e-mail recebida. O envio está sendo processado.");
     }
 }
