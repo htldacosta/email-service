@@ -1,6 +1,7 @@
-package com.email.email_service.service;
+package com.email.email_service.service.impl;
 
 import com.email.email_service.DTO.EmailRequestDTO;
+import com.email.email_service.service.EmailService;
 import jakarta.mail.internet.MimeMessage;
 
 import org.jsoup.Jsoup;
