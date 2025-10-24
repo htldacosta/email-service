@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class ApiKeyInterceptor implements HandlerInterceptor {
 
-    @Value("${my-key-mega-power-secret}")
+    @Value("${app.api.key}")
     private String apiKey;
 
 
@@ -20,7 +20,7 @@ public class ApiKeyInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "chabve de API inválida!");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "chave de API inválida!");
         return false;
     }
 }
